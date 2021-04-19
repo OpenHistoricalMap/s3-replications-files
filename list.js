@@ -115,6 +115,7 @@ function sortFunction(a, b) {
 }
 
 function getS3Data(marker, html) {
+
   var s3_rest_url = createS3QueryUrl(marker);
   // set loading notice
   $('#listing')
@@ -240,11 +241,23 @@ function getInfoFromS3Data(xml) {
     }
     // clang-format on
   });
+
   if ($(xml.find('IsTruncated')[0]).text() == 'true') {
     var nextMarker = $(xml.find('NextMarker')[0]).text();
   } else {
     var nextMarker = null;
   }
+  
+  // Filter files that is not necessary to display
+  if (DO_NOT_DISPLAY) {
+    directories = directories.filter(function (dir) {
+      return !DO_NOT_DISPLAY.directories.includes(dir.Key);
+    });
+    files = files.filter(function (fil) {
+      return !DO_NOT_DISPLAY.files.includes(fil.Key);
+    });
+  }
+
   // clang-format off
   return {
     files: files,
