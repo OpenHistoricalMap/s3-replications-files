@@ -1,0 +1,18 @@
+{
+  "name": "s3-replications-files",
+  "version": "1.0.0",
+  "description": "",
+  "main": "list.js",
+  "scripts": {
+    "deploy": "aws s3 cp list.js s3://planet.openhistoricalmap.org && aws s3 cp index.html s3://planet.openhistoricalmap.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenHistoricalMap/s3-replications-files.git"
+  },
+  "author": "OpenHistoricalMap",
+  "bugs": {
+    "url": "https://github.com/OpenHistoricalMap/s3-replications-files/issues"
+  },
+  "homepage": "http://planet.openhistoricalmap.org"
+}
